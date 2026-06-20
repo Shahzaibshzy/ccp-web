@@ -11,12 +11,17 @@ app.use(express.json());
 
 initializeDatabase();
 
-app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes);
+function registerApiRoutes(basePath) {
+  app.use(`${basePath}/auth`, authRoutes);
+  app.use(`${basePath}/products`, productRoutes);
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Inventory API is running' });
-});
+  app.get(basePath, (req, res) => {
+    res.send({ message: 'Inventory API is running' });
+  });
+}
+
+registerApiRoutes('/api');
+registerApiRoutes('/_/backend/api');
 
 app.get('/', (req, res) => {
   res.send({ message: 'Inventory API is running' });

@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE || '/api';
+const API_BASE = import.meta.env.VITE_API_BASE || '/_/backend/api';
 
 export async function request(endpoint, options = {}) {
   const requestOptions = {
