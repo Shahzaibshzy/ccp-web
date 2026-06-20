@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd frontend && npm run build",
+  "buildCommand": "git submodule update --init --recursive && cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "env": {
     "VITE_API_BASE": "http://localhost:5000/api"
