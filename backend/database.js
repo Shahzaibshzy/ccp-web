@@ -1,8 +1,13 @@
 const bcrypt = require('bcrypt');
 const sqlite3 = require('sqlite3').verbose();
+const os = require('os');
 const path = require('path');
 
-const dbPath = path.join(__dirname, 'database.sqlite');
+const dbPath =
+  process.env.SQLITE_DB_PATH ||
+  (process.env.VERCEL
+    ? path.join(os.tmpdir(), 'inventory.sqlite')
+    : path.join(__dirname, 'database.sqlite'));
 const db = new sqlite3.Database(dbPath);
 
 function initializeDatabase() {
